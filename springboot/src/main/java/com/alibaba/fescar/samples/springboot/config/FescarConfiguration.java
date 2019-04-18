@@ -38,7 +38,6 @@ public class FescarConfiguration {
 	 */
 	@Bean
 	public GlobalTransactionScanner globalTransactionScanner() {
-		GlobalTransactionScanner globalTransactionScanner = new GlobalTransactionScanner(applicationId, "receivables");
-		return globalTransactionScanner;
+		return new GlobalTransactionScanner(applicationId, "receivables");
 	}
 }

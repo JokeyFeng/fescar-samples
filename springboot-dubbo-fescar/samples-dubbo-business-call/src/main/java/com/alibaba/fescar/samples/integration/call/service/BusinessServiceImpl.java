@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * @Author: heshouyou
- * @Description  Dubbo业务发起方逻辑
+ * @Description Dubbo业务发起方逻辑
  * @Date Created in 2019/1/14 18:36
  */
 @Service
-public class BusinessServiceImpl implements BusinessService{
+public class BusinessServiceImpl implements BusinessService {
 
     @Reference(version = "1.0.0")
     private StorageDubboService storageDubboService;
@@ -27,10 +27,11 @@ public class BusinessServiceImpl implements BusinessService{
     @Reference(version = "1.0.0")
     private OrderDubboService orderDubboService;
 
-    private boolean flag;
+    private boolean flag = false;
 
     /**
      * 处理业务逻辑
+     *
      * @Param:
      * @Return:
      */
@@ -53,9 +54,9 @@ public class BusinessServiceImpl implements BusinessService{
         ObjectResponse<OrderDTO> response = orderDubboService.createOrder(orderDTO);
 
         //打开注释测试事务发生异常后，全局回滚功能
-//        if (!flag) {
-//            throw new RuntimeException("测试抛异常后，分布式事务回滚！");
-//        }
+        if (!flag) {
+            throw new RuntimeException("测试抛异常后，分布式事务回滚！");
+        }
 
         if (storageResponse.getStatus() != 200 || response.getStatus() != 200) {
             throw new DefaultException(RspStatusEnum.FAIL);

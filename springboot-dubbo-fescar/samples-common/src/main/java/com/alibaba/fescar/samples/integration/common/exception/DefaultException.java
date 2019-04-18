@@ -5,10 +5,10 @@ import com.alibaba.fescar.samples.integration.common.enums.RspStatusEnum;
 
 /**
  * @Author: heshouyou
- * @Description  自定义异常
+ * @Description 自定义异常
  * @Date Created in 2019/1/15 9:44
  */
-public class DefaultException extends RuntimeException{
+public class DefaultException extends RuntimeException {
 
     private RspStatusEnum rspStatusEnum;
 
